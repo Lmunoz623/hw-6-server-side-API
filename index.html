@@ -4,16 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
+    <header class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Weather Dashboard</h1>
+        </div>
+    </header>
+
+    <div class="container">
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-4" id="search">
+            <form class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                  <label class="sr-only"></label>
+                  <input id="city" placeholder="City Name">
+                  <button class="btn"><i class="fa fa-search"  aria-hidden="true"></i>Search</button>
+                </div>
+            </form> 
+          </div>
+          <div class="col-8" id="main">
+              <h2 id="cityName"></h2>
+              <div id="date"></div>
+              <div id="temp"></div>
+              <div id="humid"></div>
+              <div id="wind"></div>
+              <div id="uv"></div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+    <h2>5 Day Forecast</h2>
+
+    <div class="container">
+        <div class="row align-items-end" id="forecast">
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-        <button class="btn">click me!</button>
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
