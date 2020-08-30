@@ -1,11 +1,12 @@
 $(document).ready(function () {  
     
 
-    $(".btn").on("click", function(event) {
+    function displayWeather() {
 
-        event.preventDefault();
+
         // Pulling city name entered in user input field
         var cityName = $("#city").val();
+
         // Weather API used to search specific city weather data *use for coordinates only*
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=91348c80bc7da0b36807624414cbcad8";
         // AJAX call to pull coordinates for city
@@ -27,6 +28,10 @@ $(document).ready(function () {
             localStorage.setItem(key, val);
             console.log(val);
             console.log(key);
+
+            // Pushing searched city to list
+            history.push(city);
+            renderHistory();
 
             // Weather API used to provide current and forecast weather
             var newQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=91348c80bc7da0b36807624414cbcad8";
@@ -55,12 +60,21 @@ $(document).ready(function () {
 
                     $("#cityName").text(city);
                     $("#date").text(date);
-                    $("#temp").text("Temp: " + temp);
-                    $("#humid").text("Humidity: " + humid);
-                    $("#wind").text("Wind Speed: " + wind);
+                    $("#temp").text("Temp: " + temp + "˚ F");
+                    $("#humid").text("Humidity: " + humid + "%");
+                    $("#wind").text("Wind Speed: " + wind + " mph");
                     $("#uv").text("UV Index: " + uv);
 
                     $("#date").append(currIcon);
+
+                    // Determine the appropriate Exposure Level to select based on level of UV Index
+                    if (uv < 3) {
+                        $("#uv").attr("class", "favorable");
+                    } else if (uv >= 3 && uv < 8) {
+                        $("#uv").attr("class", "moderate");
+                    } else if (uv >= 8) {
+                        $("#uv").attr("class", "severe");
+                    }  
 
 
 
@@ -83,8 +97,8 @@ $(document).ready(function () {
                     var forecastDiv = $("<div>").attr("class", "col");
                     var dateDiv = $("<div>").text(forecastDate);
                     var iconImage = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecastIconCode + ".png");
-                    var tempDiv = $("<div>").text("Temp: " + forecastTemp);
-                    var humidDiv = $("<div>").text("Humidity: " + forecastHumid);
+                    var tempDiv = $("<div>").text("Temp: " + forecastTemp + "˚ F");
+                    var humidDiv = $("<div>").text("Humidity: " + forecastHumid + "%");
 
                     $("#forecast").append(forecastDiv);
                     forecastDiv.append(dateDiv);
@@ -92,23 +106,41 @@ $(document).ready(function () {
                     forecastDiv.append(tempDiv);
                     forecastDiv.append(humidDiv);
 
-
-
                 }
-
             })
-
-
         })
+    }
+    
+   
+
+    var history = [];
+
+    function renderHistory() {
 
 
+        $(".list-group").empty();
+    
+        for (var i = 0; i < history.length; i++) {
 
+            var searchedCity = $("<button>");
+            searchedCity.addClass("list-group-item list-group-item-action history-btn");
+            searchedCity.attr("data-name", history[i]);
+            searchedCity.attr("type", "button")
+            searchedCity.text(history[i]);
+            $(".list-group").append(searchedCity);
+    
+
+        }
+    }
+
+    $(".btn").on("click", function(event) {
+        
+        event.preventDefault();
+        displayWeather();
     })
 
 
-
-
-        function renderLastCity() {
+    function renderLastCity() {
 
             $("#city").val(localStorage.getItem("city"));
 
@@ -157,12 +189,21 @@ $(document).ready(function () {
 
                     $("#cityName").text(city);
                     $("#date").text(date);
-                    $("#temp").text("Temp: " + temp);
-                    $("#humid").text("Humidity: " + humid);
-                    $("#wind").text("Wind Speed: " + wind);
+                    $("#temp").text("Temp: " + temp + "˚ F");
+                    $("#humid").text("Humidity: " + humid + "%");
+                    $("#wind").text("Wind Speed: " + wind + " mph");
                     $("#uv").text("UV Index: " + uv);
 
                     $("#date").append(currIcon);
+
+                    // Determine the appropriate Exposure Level to select based on level of UV Index
+                    if (uv < 3) {
+                        $("#uv").attr("class", "favorable");
+                    } else if (uv >= 3 && uv < 8) {
+                        $("#uv").attr("class", "moderate");
+                    } else if (uv >= 8) {
+                        $("#uv").attr("class", "severe");
+                    }  
 
 
 
@@ -185,8 +226,8 @@ $(document).ready(function () {
                     var forecastDiv = $("<div>").attr("class", "col");
                     var dateDiv = $("<div>").text(forecastDate);
                     var iconImage = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecastIconCode + ".png");
-                    var tempDiv = $("<div>").text("Temp: " + forecastTemp);
-                    var humidDiv = $("<div>").text("Humidity: " + forecastHumid);
+                    var tempDiv = $("<div>").text("Temp: " + forecastTemp + "˚ F");
+                    var humidDiv = $("<div>").text("Humidity: " + forecastHumid + "%");
 
                     $("#forecast").append(forecastDiv);
                     forecastDiv.append(dateDiv);
@@ -203,6 +244,12 @@ $(document).ready(function () {
     }
 
     renderLastCity();
+
+
+
+    $(".history-btn").on("click", function () {
+        displayWeather();
+    })
 
 
 });

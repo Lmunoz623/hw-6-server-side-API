@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,42 +17,43 @@
         </div>
     </header>
 
-    <div class="container">
-
-    </div>
-
-    <div class="container">
+    <div class="container" id="search-container">
         <div class="row">
-          <div class="col-4" id="search">
+          <div id="search">
             <form class="form-inline">
                 <div class="form-group mx-sm-3 mb-2">
                   <label class="sr-only"></label>
-                  <input id="city" placeholder="City Name">
-                  <button class="btn"><i class="fa fa-search"  aria-hidden="true"></i>Search</button>
+                  <input id="city" placeholder="City">
+                  <button class="btn"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
                 </div>
             </form> 
-          </div>
-          <div class="col-8" id="main">
-              <h2 id="cityName"></h2>
-              <div id="date"></div>
-              <div id="temp"></div>
-              <div id="humid"></div>
-              <div id="wind"></div>
-              <div id="uv"></div>
-          </div>
+        </div>
+        <div class="list-group">
+            
         </div>
     </div>
 
 
-
-
-    <h2>5 Day Forecast</h2>
 
     <div class="container">
-        <div class="row align-items-end" id="forecast">
+        <div class="col-8" id="main">
+            <h2 id="cityName"></h2>
+            <div id="date" class="data"></div>
+            <div id="temp" class="data"></div>
+            <div id="humid" class="data"></div>
+            <div id="wind" class="data"></div>
+            <div id="uv" class="data"></div>
         </div>
     </div>
 
+    <!--Forecast weather for next 5 days-->
+    <div class="container" id="forecast-container">
+        <h2 class="fiveDay">5 Day Forecast</h2>
+        <div class="container">
+            <div class="row align-items-end" id="forecast">
+            </div>
+        </div>
+    </div>
 
 
 
