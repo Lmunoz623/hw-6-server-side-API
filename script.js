@@ -148,7 +148,7 @@ $(document).ready(function () {
 
 
             // Weather API used to search specific city weather data *use for coordinates only*
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=91348c80bc7da0b36807624414cbcad8";
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=91348c80bc7da0b36807624414cbcad8";
             // AJAX call to pull coordinates for city
             $.ajax({
             url: queryURL,
