@@ -8,7 +8,7 @@ $(document).ready(function () {
         var cityName = $("#city").val();
 
         // Weather API used to search specific city weather data *use for coordinates only*
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=91348c80bc7da0b36807624414cbcad8";
+        var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=91348c80bc7da0b36807624414cbcad8";
         // AJAX call to pull coordinates for city
         $.ajax({
         url: queryURL,
@@ -34,7 +34,7 @@ $(document).ready(function () {
             renderHistory();
 
             // Weather API used to provide current and forecast weather
-            var newQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=91348c80bc7da0b36807624414cbcad8";
+            var newQueryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=91348c80bc7da0b36807624414cbcad8";
             // AJAX call for current and forecast weather data
             $.ajax({
             url: newQueryURL,
